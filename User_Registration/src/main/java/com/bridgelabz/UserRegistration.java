@@ -46,9 +46,9 @@ public class UserRegistration {
         }
     }
 
-    public boolean validPasswordAccordingRule1(String  mobileNumber){
+    public boolean validPasswordAccordingRule1(String  password){
         Pattern pattern = Pattern.compile("^[a-z]{8,}$");
-        Matcher matcher = pattern.matcher(mobileNumber);
+        Matcher matcher = pattern.matcher(password);
         if (matcher.matches()){
             return true;
         }else {
@@ -56,9 +56,9 @@ public class UserRegistration {
         }
     }
 
-    public boolean validPasswordAccordingRule2(String  mobileNumber){
-        Pattern pattern = Pattern.compile(".*[A-Z].*");
-        Matcher matcher = pattern.matcher(mobileNumber);
+    public boolean validPasswordAccordingRule2(String  password){
+        Pattern pattern = Pattern.compile("\"[a-z]{7,}[A-Z]{1,}\"");
+        Matcher matcher = pattern.matcher(password);
         if (matcher.matches()){
             return true;
         }else {
@@ -66,7 +66,17 @@ public class UserRegistration {
         }
     }
 
-   
+    public boolean validPasswordAccordingRule3(String  password){
+        Pattern pattern = Pattern.compile("\"[a-z]{7,}[A-Z]{1,}[0-9]{1,}\"");
+        Matcher matcher = pattern.matcher(password);
+        if (matcher.matches()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+  
 
 
 

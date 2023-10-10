@@ -46,7 +46,17 @@ public class UserRegistration {
         }
     }
 
-   
+    public boolean validPasswordAccordingRule1(String  mobileNumber){
+        Pattern pattern = Pattern.compile("^[a-z]{8,}$");
+        Matcher matcher = pattern.matcher(mobileNumber);
+        if (matcher.matches()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    
 
 
 }

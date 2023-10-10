@@ -76,7 +76,15 @@ public class UserRegistration {
         }
     }
 
-  
+    public boolean validPasswordAccordingRule4(String  password){
+        Pattern pattern = Pattern.compile("\"[a-z]{1,}[A-Z]{1,}[0-9]{1,}[!@#$%^&*]\"");
+        Matcher matcher = pattern.matcher(password);
+        if (matcher.matches()){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
 
 

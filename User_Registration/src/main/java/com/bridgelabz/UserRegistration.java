@@ -17,7 +17,7 @@ public class UserRegistration {
     }
 
     public boolean Lname(String name){
-        Pattern pattern = Pattern.compile("^[A-Z]+[a-zA-Z]{2,}[0-9]*$");
+        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$");
         Matcher matcher = pattern.matcher(name);
         if (matcher.matches()){
             return true;

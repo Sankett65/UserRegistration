@@ -26,4 +26,14 @@ public class UserRegistration {
         }
     }
 
+    public boolean email(String email){
+        Pattern pattern = Pattern.compile("^[a-z]*.[a-z]+@[a-z]+.[a-z]{2,3}(.[a-z]{2})*$");
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 }

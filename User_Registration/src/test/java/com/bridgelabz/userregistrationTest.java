@@ -4,37 +4,58 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import java.lang.reflect.Parameter;
-import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 
 public class userregistrationTest {
+
     UserRegistration userRegistration = new UserRegistration();
     @ParameterizedTest
     @CsvSource({
-            "abc@yahoo.com,true",
-            "abc-100@yahoo.com,false",
-            "abc.100@yahoo.com,false",
-            "abc111@abc.com,false",
-            "abc-100@abc.net,false",
-            "abc.100@abc.com.au,false",
-            "abc@1.com,false" ,
-            "abc@gmail.com.com,false",
-            "abc+100@gmail.com,false"})
+            "abc-100@yahoo.com,true",
+            "abc.100@yahoo.com,true",
+            "abc111@abc.com,true",
+            "abc-100@abc.net,true",
+            "abc.100@abc.com.au,true",
+            "abc@1.com,true" ,
+            "abc@gmail.com.com,true",
+            "abc+100@gmail.com,true"})
 
+//    @CsvSource({
+//            "abc-100@yahoo.com",
+//            "abc.100@yahoo.com",
+//            "abc111@abc.com",
+//            "abc-100@abc.net",
+//            "abc.100@abc.com.au",
+//            "abc@1.com" ,
+//            "abc@gmail.com.com",
+//            "abc+100@gmail.com"})
 
-    void testEmailValidation(String emailAddress, boolean expected) {
-        boolean isValid = userRegistration.email(emailAddress);
-       Assertions.assertTrue(isValid == expected, "Expected: " + expected + ", Actual: " + isValid);
+//    void testEmailValidation(String emailAdd) {
+//        boolean isValid = userRegistration.validEmail(emailAdd);
+////        System.out.println(isValid);
+////        if (isValid==false){
+////            System.out.println("Invalid Email");
+////        }
+//        Assertions.assertTrue(isValid);
+//    }
+
+    void testEmailValidation(String emailAdd,boolean excepted) {
+        boolean isValid = userRegistration.validEmail(emailAdd);
+        Assertions.assertEquals(excepted,isValid);
     }
 
-//
-//
+
+    @ParameterizedTest
+    @CsvSource({"abc","abc@.com.my","abc123@gmail.a","abc123@.com","abc123@.com.com",
+    ".abc@abc.com","abc()*@gmail.com","abc@%*.com","abc..2002@gmail.com","abc..2002@gmail.com",
+    "abc@abc@gmail.com","abc@gmail.com.1a","abc@gmail.com.aa.au"})
+
+    void testInvalidEmail(String email){
+        boolean isInvalid=userRegistration.validEmail(email);
+        Assertions.assertFalse(isInvalid);
+    }
+
+
     @Test
     public void toSeeTheFirstNameIsValid(){
         Assertions.assertTrue(userRegistration.Fname("Sanket"));
@@ -60,9 +81,4 @@ public class userregistrationTest {
     public void toSeeThePasswordIsValid(){
         Assertions.assertTrue(userRegistration.validPasswordAccordingRule4("Sanket@123"));
     }
-
-
-
-//    @ParameterizedTest
-//    @CsvSource({"abc@yahoo.com,true","abc-100@yahoo.com,false","abc.100@yahoo.com,false","abc111@abc.com,false","abc-100@abc.net,false","abc.100@abc.com.au,false","abc@1.com,false" ,"abc@gmail.com.com,false","abc+100@gmail.com,false"})
 }

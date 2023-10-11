@@ -1,6 +1,5 @@
 package com.bridgelabz;
 
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -87,5 +86,56 @@ public class UserRegistration {
     }
 
 
+    public boolean validEmail(String email){
+        Pattern pattern = Pattern.compile("^[a-z]{3}@[a-z]{2,}.[a-z]{3,}$");
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()){
+            return true;
+        }
+        pattern = Pattern.compile("^[a-z]{3}-[0-9]{3}@[a-z]{3,}.[a-z]{2,}$");
+        matcher = pattern.matcher(email);
+        if (matcher.matches()){
+            return true;
+        }
+
+        pattern = Pattern.compile("^[a-z]{3}.[0-9]{3}@[a-z]{3,}.[a-z]{2,}$");
+        matcher = pattern.matcher(email);
+        if (matcher.matches()){
+            return true;
+        }
+         pattern = Pattern.compile("^[a-z0-9]{2,}@[a-z]{3}.[a-z]{2,}$");
+         matcher = pattern.matcher(email);
+        if (matcher.matches()){
+            return true;
+        }
+         pattern = Pattern.compile("^[a-z]{2,}-[0-9]{2,}@[a-z]{2,}.[a-z]{2,}");
+         matcher= pattern.matcher(email);
+        if (matcher.matches()){
+            return true;
+        }
+         pattern = Pattern.compile("^[a-z]{3}.[0-9]{3}@[a-z]{3}.[a-z]{3}.[a-z]{2}$");
+         matcher = pattern.matcher(email);
+        if (matcher.matches()){
+            return true;
+        }
+
+         pattern = Pattern.compile("^[a-z]{3}@[a-z]{2,}.[a-z]{3}.[a-z]{3}$");
+         matcher = pattern.matcher(email);
+        if (matcher.matches()){
+            return true;
+        }
+         pattern = Pattern.compile("[a-z]{3,}[+]\\d{2,}@[a-z]{2,}.[a-z]{3,}");
+         matcher = pattern.matcher(email);
+        if (matcher.matches()){
+            return true;
+        }
+         pattern = Pattern.compile("^[a-z]{2,}@[0-9]{1,}.[a-z]{2,}$");
+         matcher = pattern.matcher(email);
+        if (matcher.matches()){
+            return true;
+        }
+
+      return false;
+    }
 
 }

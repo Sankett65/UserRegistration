@@ -4,45 +4,32 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 
 public class userregistrationTest {
 
     UserRegistration userRegistration = new UserRegistration();
     @ParameterizedTest
-    @CsvSource({
-            "abc-100@yahoo.com,true",
-            "abc.100@yahoo.com,true",
-            "abc111@abc.com,true",
-            "abc-100@abc.net,true",
-            "abc.100@abc.com.au,true",
-            "abc@1.com,true" ,
-            "abc@gmail.com.com,true",
-            "abc+100@gmail.com,true"})
+    @ValueSource(strings ={
+            "abc-100@yahoo.com",
+            "abc.100@yahoo.com",
+            "abc111@abc.com",
+            "abc-100@abc.net",
+            "abc.100@abc.com.au",
+            "abc@1.com" ,
+            "abc@gmail.com.com",
+            "abc+100@gmail.com"})
 
-//    @CsvSource({
-//            "abc-100@yahoo.com",
-//            "abc.100@yahoo.com",
-//            "abc111@abc.com",
-//            "abc-100@abc.net",
-//            "abc.100@abc.com.au",
-//            "abc@1.com" ,
-//            "abc@gmail.com.com",
-//            "abc+100@gmail.com"})
-
-//    void testEmailValidation(String emailAdd) {
-//        boolean isValid = userRegistration.validEmail(emailAdd);
-////        System.out.println(isValid);
-////        if (isValid==false){
-////            System.out.println("Invalid Email");
-////        }
-//        Assertions.assertTrue(isValid);
-//    }
-
-    void testEmailValidation(String emailAdd,boolean excepted) {
+    void testEmailValidation(String emailAdd) {
         boolean isValid = userRegistration.validEmail(emailAdd);
-        Assertions.assertEquals(excepted,isValid);
+        Assertions.assertTrue(isValid);
     }
+
+//    void testEmailValidation(String emailAdd,boolean excepted) {
+//        boolean isValid = userRegistration.validEmail(emailAdd);
+//        Assertions.assertEquals(excepted,isValid);
+//    }
 
 
     @ParameterizedTest
@@ -81,4 +68,5 @@ public class userregistrationTest {
     public void toSeeThePasswordIsValid(){
         Assertions.assertTrue(userRegistration.validPasswordAccordingRule4("Sanket@123"));
     }
+
 }
